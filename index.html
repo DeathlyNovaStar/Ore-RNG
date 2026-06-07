@@ -12,6 +12,7 @@
         <div id="rolledItem">
             <h1 id="ore"></h1>
             <h2 id="counterDisplay">Total Rolls: 0</h2>
+            <h2 id="wallet">Cash: $0</h2>
         </div>
         <div id="previousItem">
             <h3 id="prevOre">Previous Ore:</h3>
@@ -28,20 +29,27 @@
             <p id="diamond" class="ores">Diamond: 3%</p>
             <p id="void" class="ores">Void: 1%</p>
         </div>
+
+        <label for="button" id="buttonlabel">-$10</label>
         <button id="button">Roll</button>
+        
         <div id="sidebar" class="sidebar-hidden">
             <button id="sidebar-toggle">▶</button>
 
             <h2>Inventory Vault</h2><hr>
-            <p id="vaultStone">Stone: 0</p>
-            <p id="vaultCoal">Coal: 0</p>
-            <p id="vaultIron">Iron: 0</p>
-            <p id="vaultGold">Gold: 0</p>
-            <p id="vaultDiamond">Diamond: 0</p>
-            <p id="vaultVoid">Void: 0</p>
+            
+            <p>Stone: <span id="vaultStone">0</span> <button class="sell-btn" data-ore="Stone">Sell</button></p>
+            <p>Coal: <span id="vaultCoal">0</span> <button class="sell-btn" data-ore="Coal">Sell</button></p>
+            <p>Iron: <span id="vaultIron">0</span> <button class="sell-btn" data-ore="Iron">Sell</button></p>
+            <p>Gold: <span id="vaultGold">0</span> <button class="sell-btn" data-ore="Gold">Sell</button></p>
+            <p>Diamond: <span id="vaultDiamond">0</span> <button class="sell-btn" data-ore="Diamond">Sell</button></p>
+            <p>Void: <span id="vaultVoid">0</span> <button class="sell-btn" data-ore="Void">Sell</button></p>
+            
+            <hr>
+            <button id="sell-all-btn">SELL ALL</button>
         </div>
     </div>
-    <div id="game-version">Alpha v1.1</div>
+    <div id="game-version">Alpha v1.2</div>
     <script src="script.js"></script>
 </body>
 </html>
