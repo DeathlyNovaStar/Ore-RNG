@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="pickaxe.png" type="image/x-icon">
+    <title>Ore RNG</title>
+</head>
+<body>
+    <div id="mainframe">
+        <div id="rolledItem">
+            <h1 id="ore"></h1>
+            <h2 id="counterDisplay">Total Rolls: 0</h2>
+        </div>
+        <div id="previousItem">
+            <h3 id="prevOre">Previous Ore:</h3>
+            <p id="ore1"></p>
+            <p id="ore2"></p>
+            <p id="ore3"></p>
+        </div>
+        <div id="oreChances">
+            <h2 id="chances">Ore Chances:</h2>
+            <p id="stone" class="ores">Stone: 50%</p>
+            <p id="coal" class="ores">Coal: 30%</p>
+            <p id="iron" class="ores">Iron: 10%</p>
+            <p id="gold" class="ores">Gold: 6%</p>
+            <p id="diamond" class="ores">Diamond: 3%</p>
+            <p id="void" class="ores">Void: 1%</p>
+        </div>
+        <button id="button">Roll</button>
+    </div>
+    <div id="game-version">Alpha v1.0</div>
+    <script src="script.js"></script>
+</body>
+</html>
