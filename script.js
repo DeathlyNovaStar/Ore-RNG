@@ -38,6 +38,9 @@ function rollOre() {
     
     previousItem.textContent = `Previous Ore: ${rolledOre}`;
     
+    oreWallet[rolledOre]++;
+    updateSidebarUI();
+    
     rollCount++;
     const counterEl = document.getElementById("counterDisplay");
     if (counterEl) {
@@ -84,7 +87,7 @@ function rollOre() {
             rollButton.disabled = false;
             rollButton.textContent = "Roll";
         }, 3000);
-        
+
     } else if (rolledOre === "Diamond") {
         const diamondColor = "hsl(199, 98%, 65%)";
         const diamondAlpha = "hsla(199, 98%, 65%, 0.4)";
@@ -95,3 +98,36 @@ function rollOre() {
 }
 
 rollButton.addEventListener("click", rollOre);
+
+const sidebarEl = document.getElementById("sidebar");
+const toggleBtn = document.getElementById("sidebar-toggle");
+
+toggleBtn.addEventListener("click", () => {
+    if (sidebarEl.classList.contains("sidebar-hidden")) {
+        sidebarEl.classList.remove("sidebar-hidden");
+        sidebarEl.classList.add("sidebar-open");
+        toggleBtn.textContent = "◀";
+    } else {
+        sidebarEl.classList.remove("sidebar-open");
+        sidebarEl.classList.add("sidebar-hidden");
+        toggleBtn.textContent = "▶";
+    }
+});
+
+let oreWallet = {
+    Stone: 0,
+    Coal: 0,
+    Iron: 0,
+    Gold: 0,
+    Diamond: 0,
+    Void: 0
+};
+
+function updateSidebarUI() {
+    document.getElementById("vaultStone").textContent = `Stone: ${oreWallet.Stone}`;
+    document.getElementById("vaultCoal").textContent = `Coal: ${oreWallet.Coal}`;
+    document.getElementById("vaultIron").textContent = `Iron: ${oreWallet.Iron}`;
+    document.getElementById("vaultGold").textContent = `Gold: ${oreWallet.Gold}`;
+    document.getElementById("vaultDiamond").textContent = `Diamond: ${oreWallet.Diamond}`;
+    document.getElementById("vaultVoid").textContent = `Void: ${oreWallet.Void}`;
+}
