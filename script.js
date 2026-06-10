@@ -18,6 +18,7 @@ let rollCount = saveData.rollCount;
 let oreWallet = saveData.inventory;
 let historyList = saveData.history;
 let lastOre = saveData.lastOre;
+let canRoll = true;
 
 const ores = [
     { name: "Stone", weight: 50, value: 2, color: "hsl(0, 0%, 50%)" },
@@ -40,6 +41,7 @@ const walletDisplay = document.getElementById("wallet");
 const mainframeEl = document.getElementById("mainframe");
 const sidebarEl = document.getElementById("sidebar");
 const toggleBtn = document.getElementById("sidebar-toggle");
+const resetBtn = document.getElementById("resetBtn");
 
 walletDisplay.textContent = `Cash: $${playerCash}`;
 document.getElementById("counterDisplay").textContent = `Total Rolls: ${rollCount}`;
@@ -62,7 +64,14 @@ function getRandomOre() {
 }
 
 function rollOre() {
-    if (playerCash < 5) {
+    if (!canRoll) return;
+
+        canRoll = false;
+
+        setTimeout(() => {
+        canRoll = true;
+        }, 1000);
+    if (playerCash < 10) {
         rollButton.disabled = true;
         rollButton.textContent = "Not enough cash!";
         return;
@@ -70,7 +79,7 @@ function rollOre() {
     breakingSound.currentTime = 0;
     breakingSound.play();
 
-    playerCash -= 5;
+    playerCash -= 10;
     walletDisplay.textContent = `Cash: $${playerCash}`;
 
     rollButton.disabled = true;
@@ -121,12 +130,12 @@ function rollOre() {
 
             setTimeout(() => {
                 mainframeEl.classList.remove("void-glow");
-                rollButton.disabled = playerCash < 5;
-                rollButton.textContent = playerCash < 5 ? "Not enough cash!" : "Mine";
+                rollButton.disabled = playerCash < 10;
+                rollButton.textContent = playerCash < 10 ? "Not enough cash!" : "Mine";
             }, 3000);
         } else {
-            rollButton.disabled = playerCash < 5;
-            rollButton.textContent = playerCash < 5 ? "Not enough cash!" : "Mine";
+            rollButton.disabled = playerCash < 10;
+            rollButton.textContent = playerCash < 10 ? "Not enough cash!" : "Mine";
         }
 
         if (rolledOre === "Diamond") {
@@ -143,6 +152,7 @@ function rollOre() {
 
         updateSidebarUI();
         saveGame();
+        checkStuck();
     }, 1000);
 }
 
@@ -176,10 +186,11 @@ function sellCategory(type) {
     updateSidebarUI();
     saveGame();
 
-    if (playerCash >= 5) {
+    if (playerCash >= 10) {
         rollButton.disabled = false;
         rollButton.textContent = "Mine";
     }
+    checkStuck();
 }
 
 function sellAllOres() {
@@ -198,11 +209,56 @@ function sellAllOres() {
     updateSidebarUI();
     saveGame();
 
-    if (playerCash >= 5) {
+    if (playerCash >= 10) {
         rollButton.disabled = false;
         rollButton.textContent = "Mine";
     }
+    checkStuck();
 }
+
+function checkStuck() {
+    const isStuck =
+        playerCash < 10 &&
+        Object.values(oreWallet).every(v => v === 0);
+
+    resetBtn.style.display = isStuck ? "block" : "none";
+}
+
+function resetGame() {
+    playerCash = 100;
+    rollCount = 0;
+
+    oreWallet = {
+        Stone: 0,
+        Coal: 0,
+        Iron: 0,
+        Gold: 0,
+        Diamond: 0,
+        Void: 0
+    };
+
+    historyList = ["None", "None", "None"];
+    lastOre = "None";
+
+    walletDisplay.textContent = `Cash: $${playerCash}`;
+    document.getElementById("counterDisplay").textContent = `Total Rolls: 0`;
+    previousItem.textContent = `Previous Ore: None`;
+    rolledItem.textContent = "None";
+
+    updateSidebarUI();
+    document.getElementById("ore1").textContent = "1. None";
+    document.getElementById("ore2").textContent = "2. None";
+    document.getElementById("ore3").textContent = "3. None";
+    saveGame();
+    checkStuck();
+    rollButton.disabled = false;
+    rollButton.textContent = "Mine";
+}
+
+resetBtn.addEventListener("click", () => {
+    resetGame();
+});
+checkStuck();
 
 toggleBtn.addEventListener("click", () => {
     const open = sidebarEl.classList.toggle("sidebar-open");
