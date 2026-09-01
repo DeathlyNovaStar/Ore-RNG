@@ -16,41 +16,77 @@
         </div>
         <div id="previousItem">
             <h3 id="prevOre">Previous Ore:</h3>
-            <p id="ore1"></p>
-            <p id="ore2"></p>
-            <p id="ore3"></p>
+            <div id="historyList"></div>
         </div>
         <div id="oreChances">
             <h2 id="chances">Ore Chances:</h2>
-            <p id="stone" class="ores">Stone: 50%</p>
-            <p id="coal" class="ores">Coal: 30%</p>
-            <p id="iron" class="ores">Iron: 10%</p>
-            <p id="gold" class="ores">Gold: 6%</p>
-            <p id="diamond" class="ores">Diamond: 3%</p>
-            <p id="void" class="ores">Void: 1%</p>
+
+            <div id="oreChanceList">
+                <p id="dirt" class="ores"><b>Dirt: 1 / 2</b></p>
+                <p id="CoarseDirt" class="ores"><b>Coarse Dirt: 1 / 4</b></p>
+                <p id="stone" class="ores"><b>Stone: 1 / 6</b></p>
+                <p id="granite" class="ores"><b>Granite: 1 / 20</b></p>
+                <p id="andesite" class="ores"><b>Andesite: 1 / 50</b></p>
+                <p id="diorite" class="ores"><b>Diorite: 1 / 100</b></p>
+                <p id="coal" class="ores"><b>Coal: 1 / 300</b></p>
+            </div>
         </div>
 
         <label for="button" id="buttonlabel">-$10</label>
         <button id="button">Mine</button>
         
-        <div id="sidebar" class="sidebar-hidden">
-            <button id="sidebar-toggle">▶</button>
+        <div id="sidebar" class="sidebar sidebar-hidden">
+            <button class="sidebar-toggle"  id="sidebar-toggle">▶</button>
 
-            <h2>Inventory Vault</h2><hr>
-            
-            <p>Stone: <span id="vaultStone">0</span> <button class="sell-btn" data-ore="Stone">Sell</button></p>
-            <p>Coal: <span id="vaultCoal">0</span> <button class="sell-btn" data-ore="Coal">Sell</button></p>
-            <p>Iron: <span id="vaultIron">0</span> <button class="sell-btn" data-ore="Iron">Sell</button></p>
-            <p>Gold: <span id="vaultGold">0</span> <button class="sell-btn" data-ore="Gold">Sell</button></p>
-            <p>Diamond: <span id="vaultDiamond">0</span> <button class="sell-btn" data-ore="Diamond">Sell</button></p>
-            <p>Void: <span id="vaultVoid">0</span> <button class="sell-btn" data-ore="Void">Sell</button></p>
-            
+            <h2>Inventory Vault</h2>
+            <hr>
+            <div id="inventoryList"></div>
+            <hr>
+            <h2>Pickaxe Store</h2>
+            <hr>
+            <div id="pickaxeStore">
+                <p id="currentPick">Current Pickaxe: <span id="pickaxe"></span></p>
+                <button id="upgradePickBtn">Upgrade Pickaxe</button> <h2><span id="upgradePickCost">Cost: $500</span><span id="vr">|</span><span id="luck">+25% luck</span></h2>
+            </div>
             <hr>
             <button id="sell-all-btn">SELL ALL</button>
             <button id="resetBtn">Reset?</button>
         </div>
+        <div id="pickaxePopup">
+
+            <div class="popup-box">
+
+                <div class="popup-header">
+                    <h2 id="popupPickaxeName">Diamond Pickaxe</h2>
+                    <button id="closePopup">X</button>
+                </div>
+
+
+                <div class="popup-content">
+
+                    <p id="popupLuck"></p>
+
+                    <p id="popupSpeed"></p>
+
+                    <h2>Description</h2>
+
+                    <p id="popupDescription"></p>
+
+                </div>
+
+            </div>
+
+        </div>
     </div>
-    <div id="game-version">Alpha v1.4</div>
+    <div id="coalReveal">
+        <div class="coal-light"></div>
+
+        <div class="coal-result">
+            <div class="coal-name">COAL</div>
+            <div class="coal-chance">1 in 300</div>
+        </div>
+    </div>
+    <div id="game-version">Alpha v1.7</div>
     <script src="script.js"></script>
 </body>
 </html>
