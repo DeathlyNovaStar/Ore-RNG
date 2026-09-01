@@ -89,7 +89,7 @@ const ores = [
     },
     {
         name: "Coal",
-        weight: 0.5,
+        weight: 1,
         value: 500,
         tier: 5,
         color: "hsl(0, 0%, 0%)"
@@ -119,7 +119,7 @@ const pickaxes = [
         name:"Bare Hands",
         price:0,
         luck:100,
-        speed:40,
+        speed:4000,
         color:"hsl(30,54%,61%)",
         description:"Technically not a pickaxe... but it works! Barely..."
     },
